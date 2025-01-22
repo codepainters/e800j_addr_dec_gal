@@ -1,0 +1,25 @@
+
+
+ Pin # | Name     | Pin Type
+-----------------------------
+   1   | A6       | Input
+   2   | A5       | Input
+   3   | A4       | Input
+   4   | A3       | Input
+   5   | A2       | Input
+   6   | A1       | Input
+   7   | A0       | Input
+   8   | A7       | Input
+   9   | A8       | Input
+  10   | GND      | GND
+  11   | /OE      | Input
+  12   | nCS51    | Output
+  13   | nCF1     | Output
+  14   | nIAL     | Output
+  15   | NC       | NC
+  16   | nCSFDC   | Output
+  17   | nCS55    | Output
+  18   | nCF7     | Output
+  19   | nCFE     | Output
+  20   | VCC      | VCC
+

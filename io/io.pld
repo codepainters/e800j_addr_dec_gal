@@ -1,0 +1,52 @@
+GAL16V8     ; ...is enough
+IO_ADDR_DEC
+
+
+; PROM signals
+; A6  A5 A4 A3 A2 A1 A0 A7 A8 GND
+; /OE D4 D5 D6 D7 D3 D2 D1 D0 VCC
+
+
+; IO decoder signals
+
+A6  A5    A4   A3   A2 A1     A0    A7   A8   GND
+/OE nCS51 nCF1 nIAL NC nCSFDC nCS55 nCF7 nCFE VCC
+
+
+; how to describe constant 1 in GALasm? Using NC for now.
+; D7 = A0 + /A0
+
+/nCFE = 
+    A7 * A6 * A5 * A4 * A3 * A2 * A1 * /A0 +    ; FE
+    A7 * A6 * A5 * A4 * A3 * /A2 * A1 * A0 +    ; FB
+    /A7 * A6 * A5 * A4 * A3 * A2 * A1 * A0      ; 7F
+    
+/nCF7 = 
+    A7 * A6 * A5 * A4 * /A3 * A2 * A1 * A0      ; F7
+
+/nCS55 = 
+    /A7 * /A6 * /A5 * A4 * A3 * A2 * A1 * A0 +  ; 1F
+    A7 * A6 * /A5 * A4 * A3 * A2 * /A1 * /A0 +  ; DC
+    A7 * A6 * /A5 * A4 * A3 * A2 * /A1 * A0 +   ; DD
+    A7 * A6 * /A5 * A4 * A3 * A2 * A1 * /A0 +   ; DE
+    A7 * A6 * /A5 * A4 * A3 * A2 * A1 * A0      ; DF
+    
+/nCSFDC = 
+    A7 * A6 * A5 * /A4 * A3 * A2 * A1 * /A0 +   ; EE
+    A7 * A6 * A5 * /A4 * A3 * A2 * A1 * A0      ; EF
+
+/nCS51 = 
+    A7 * /A6 * A5 * A4 * A3 * A2 * A1 * /A0 +   ; BE
+    A7 * /A6 * A5 * A4 * A3 * A2 * A1 * A0      ; BF
+
+/nCF1 = 
+    A7 * A6 * A5 * A4 * /A3 * /A2 * /A1 * A0    ; F1
+
+/nIAL = 
+    A8 * /A7 * A6 * A5 * /A4 * /A3 * A2 * A1 * /A0  ; 066
+
+
+
+DESCRIPTION
+
+Elwro 800 Junior - 74S474 based I/O adddress decoder replacement. 
