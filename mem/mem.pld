@@ -1,0 +1,42 @@
+GAL16V8     ; ...is enough
+MEM_ADDR_DEC
+
+
+; PROM signals
+; A6  A5 A4 A3 A2 A1 A0 A7 A8 GND
+; /OE D4 D5 D6 D7 D3 D2 D1 D0 VCC
+
+
+; MEM decoder signals
+
+BOOT A15   A14  A13 A12 A11 A10 f7q1  RELOK GND
+/OE  nROM2 nIAH NC  NC  nDR nRS nROM3 nROM1 VCC
+
+; ~ROM1 (BAS0) - at 0x0000..0x1FFF
+; nROM1 = (~(RELOK == 1 && f7q1 == 1) && BOOT == 0 && A[15:13] == 3'h00) ? 1'b0 : 1'b1;
+/nROM1 = /BOOT * /A15 * /A14 * /A13 * /RELOK * /f7q1 +
+         /BOOT * /A15 * /A14 * /A13 *  RELOK * /f7q1 +
+         /BOOT * /A15 * /A14 * /A13 * /RELOK *  f7q1 
+
+; ~ROM2 (BOOT) - at 0x0000..0x1FFF
+/nROM2 = BOOT * /A15 * /A14 * /A13
+
+; 0x2000..0x3FFF region
+; - ROM3 (BAS1) is mapped if BOOT == 0 and f7q1 == 0, or BOOT == 1 and fl_q1 == 1
+/nROM3 = /BOOT * /f7q1 * /A15 * /A14 * A13 +
+          BOOT *  f7q1 * /A15 * /A14 * A13
+
+; ~RS - at 0x5800..0x5BFF if RELOK == 0, 0xF800..0xFBFF if RELOK == 1
+/nRS = /RELOK * /A15 * A14 * /A13 * A12 * A11 * /A10 +  ; A[15:10] = 0x16
+        RELOK *  A15 * A14 *  A13 * A12 * A11 * /A10    ; A[15:10] = 0x3E
+
+; ~DR selects DRAM, it is active for any address that is not handled by EPROMs
+; at the moment.
+/nDR = nROM1 * nROM2 * nROM3
+
+; ~IAH - part of the RESTART circuit.
+/nIAH = RELOK * f7q1 * /BOOT * /A15 * /A14 * /A13 * /A12 * /A11 * /A10
+
+DESCRIPTION
+
+Elwro 800 Junior - 74S474 based MEM adddress decoder replacement. 

@@ -1,0 +1,25 @@
+
+
+ Pin # | Name     | Pin Type
+-----------------------------
+   1   | BOOT     | Input
+   2   | A15      | Input
+   3   | A14      | Input
+   4   | A13      | Input
+   5   | A12      | Input
+   6   | A11      | Input
+   7   | A10      | Input
+   8   | f7q1     | Input
+   9   | RELOK    | Input
+  10   | GND      | GND
+  11   | /OE      | Input
+  12   | nROM2    | Output
+  13   | nIAH     | Output
+  14   | NC       | NC
+  15   | NC       | NC
+  16   | nDR      | Output
+  17   | nRS      | Output
+  18   | nROM3    | Output
+  19   | nROM1    | Output
+  20   | VCC      | VCC
+
