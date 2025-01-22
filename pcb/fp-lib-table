@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "addr_dec_gal")(type "KiCad")(uri "${KIPRJMOD}/addr_dec_gal.pretty")(options "")(descr ""))
+)
