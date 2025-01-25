@@ -32,7 +32,15 @@ BOOT A15   A14  A13 A12 A11 A10 f7q1  RELOK GND
 
 ; ~DR selects DRAM, it is active for any address that is not handled by EPROMs
 ; at the moment.
-/nDR = nROM1 * nROM2 * nROM3
+;
+; Note: in theory I could use nROM[1..3] here, but for some reason
+; it doesn't work for me. Hence copied equations.
+nDR =  /BOOT * /A15 * /A14 * /A13 * /RELOK * /f7q1 +
+       /BOOT * /A15 * /A14 * /A13 *  RELOK * /f7q1 +
+       /BOOT * /A15 * /A14 * /A13 * /RELOK *  f7q1 +
+        BOOT * /A15 * /A14 * /A13 + 
+       /BOOT * /f7q1 * /A15 * /A14 * A13 +
+        BOOT *  f7q1 * /A15 * /A14 * A13
 
 ; ~IAH - part of the RESTART circuit.
 /nIAH = RELOK * f7q1 * /BOOT * /A15 * /A14 * /A13 * /A12 * /A11 * /A10
