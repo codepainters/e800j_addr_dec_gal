@@ -17,12 +17,11 @@ In this repo:
 PLD sources:
 
 * [io](io) - source and JEDEC file for I/O address decoder
-
 * [mem](mem) - source and JEDEC file for memory address decoder
 
-  
+Both decoders have been verified by comparing them against PROM dumps and tested to ensure they function correctly in the Elwro 800 Junior board.
 
-The sources can be compiled with [galasm](https://github.com/daveho/GALasm) like e.g.:
+The source files can be compiled with [galasm](https://github.com/daveho/GALasm) like e.g.:
 
 ```
 $ galasm io.pld
