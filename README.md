@@ -1,16 +1,19 @@
 # PROM replacement for Elwro 800 Junior - GAL16V8 variant
 
-Elwro 800 Junior uses two `SN74S474` 512x8 PROMs as IO and memory address decoders. These PROMs are hard to get (and program), this project is a `GAL16V8`-based plug-in replacement for both address decoders. Note: there is [another version](https://github.com/codepainters/e800j_addr_dec_atf/) using `ATF1502ASL` CPLDs in TQFP-44, if you prefer SMD devices and JTAG programming :) 
+Elwro 800 Junior uses two `SN74S474` 512x8 PROMs as IO and memory address decoders. These PROMs are increasingly difficult to obtain (and program), this project provides a `GAL16V8`-based plug-in replacement for both address decoders. 
+
+Note: there is [another version](https://github.com/codepainters/e800j_addr_dec_atf/) using `ATF1502ASL` CPLDs in TQFP-44, if you prefer SMD devices and JTAG programming :) 
 
 ![](img/addr_dec_gal_real.jpg)
 
-In this repo:
+Hardware files:
 
 * [pcb](pcb) - schematic/PCB project in KiCAD 8 format
+* PDF schematics - [color](pdf/addr_dec_gal.pdf) and [black&white](pdf/addr_dec_gal_bw.pdf)
 * [interactive BOM](addr_dec_gal_ibom.html) file (you have to download it and open locally)
 * Gerber files (in a [jlcpcb](https://jlcpcb.com/)-compatible ZIP format):
-  * [addr_dec_gal.zip](gerbers/addr_dec_gal.zip) - single PCB
-  * [addr_dec_gal_panel.zip](gerbers/addr_dec_gal.zip) - two PCBs panelized
+  * [addr\_dec\_gal.zip](gerbers/addr_dec_gal.zip) - single PCB
+  * [addr\_dec\_gal\_panel.zip](gerbers/addr_dec_gal_panel.zip) - two PCBs panelized
 
 
 
